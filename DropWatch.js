@@ -79,7 +79,7 @@ function getShowTime(){
   hours = (hours < 10) ? "0" + hours : hours;
   minutes = (minutes < 10) ? "0" + minutes : minutes;
   seconds = (seconds < 10) ? "0" + seconds : seconds;
-  milliseconds = (milliseconds < 100) ? (milliseconds < 10) ? "00" + milliseconds : "0" + milliseconds : milliseconds;
-  timerDisplay.innerHTML = seconds;
-  document.getElementById('result').innerHTML = ((milliseconds^2)*16)/100;
+  milliseconds = (milliseconds < 100) ? (milliseconds < 10) ? "0" + milliseconds : milliseconds : milliseconds;
+  timerDisplay.innerHTML =  seconds + ':' + milliseconds;
+  document.getElementById('result').innerHTML = ((milliseconds * milliseconds)*16)/100;
 }
