@@ -1,0 +1,64 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <head>
+  <!-- Global site tag (gtag.js) - Google Analytics still needs to be added -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A simple depth calculator based on time!">
+    <meta name="author" content="Jack Fader based on Bootstrap Cover template">
+    <meta name="theme-color" content="#515550" />
+    <meta name="msapplication-TileColor" content="#515550">
+    <title>DropWatch: How Deep is it?</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+
+  <body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">DropWatch</h3>
+        </div>
+      </header>
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">How deep is it?</h1>
+        <p class="lead">Drop* something small and start the timer, when you hear it hit the ground stop the timer and we will calculate the distance for you.</p>
+
+        <div id="timerContainer">
+          <div class="timer" onclick="startTimer()">Drop!</div>
+          <div class="startTimer reset" onclick="startTimer()" >
+            <i class="fas fa-play"></i>
+          </div>
+          <div class="pauseTimer reset" onclick="pauseTimer()" >
+            <i class="fas fa-pause"></i>
+          </div>
+          <div class="resetTimer reset" onclick="resetTimer()">Reset</div>
+        </div>
+        <script type="text/javascript" src="DropWatch.js"></script>
+
+        <h2>It's about: </h2>
+        <h3 type = "number" id="result"> </h3>
+        Feet!
+        <br></br>
+        <p>You can also use this to figure out how high something has been thrown, just wait for the item to reach the top off the throw before starting the timer.</p>
+
+      </main>
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <font color = "white">
+            <p>*Make sure there is no one below you when you drop it!</p>
+          <p>Built by a  <a href="https://twitter.com/faderjack" target="_blank" rel="noreferrer">Gravity Fan</a>. Based on the Cover template for <a href="https://getbootstrap.com/" target="_blank" rel="noreferrer">Bootstrap</a> and <a href="https://github.com/olinations/stopwatch" target="_blank" rel="noreferrer">Vanilla Stopwatch</a>.</p>
+        </font>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
