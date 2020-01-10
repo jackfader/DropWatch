@@ -16,16 +16,10 @@ function startTimer(){
     paused = 0;
     running = 1;
     timerDisplay.style.background = "#000000";
-    timerDisplay.style.cursor = "auto";
+    timerDisplay.style.cursor = "pointer";
     timerDisplay.style.color = "white";
-    startTimerButton.classList.add('lighter');
-    pauseTimerButton.classList.remove('lighter');
-    startTimerButton.style.cursor = "pointer";
-    pauseTimerButton.style.cursor = "pointer";
   }
-  else if (!difference){
-    // if timer never started, don't allow pause button to do anything
-  } else if (!paused) {
+else if (!paused) {
     clearInterval(tInterval);
     savedTime = difference;
     paused = 1;
@@ -33,32 +27,11 @@ function startTimer(){
     timerDisplay.style.background = "#000000";
     timerDisplay.style.color = "#ffffff";
     timerDisplay.style.cursor = "pointer";
-    startTimerButton.classList.remove('lighter');
-    pauseTimerButton.classList.add('lighter');
-    startTimerButton.style.cursor = "pointer";
-    pauseTimerButton.style.cursor = "pointer";
     document.getElementById('result').style.visibility="visible";
-  } else {
-    startTimer();
-  }
-}
+    document.getElementById('result2').style.visibility="visible";
+    document.getElementById('feet').style.visibility="visible";
+    document.getElementById('Meters').style.visibility="visible";
 
-function pauseTimer(){
-  if (!difference){
-    // if timer never started, don't allow pause button to do anything
-  } else if (!paused) {
-    clearInterval(tInterval);
-    savedTime = difference;
-    paused = 1;
-    running = 0;
-    timerDisplay.style.background = "#000000";
-    timerDisplay.style.color = "#ffffff";
-    timerDisplay.style.cursor = "pointer";
-    startTimerButton.classList.remove('lighter');
-    pauseTimerButton.classList.add('lighter');
-    startTimerButton.style.cursor = "pointer";
-    pauseTimerButton.style.cursor = "auto";
-    document.getElementById('result').style.visibility="visible";
   } else {
     startTimer();
   }
@@ -74,12 +47,13 @@ function resetTimer(){
   timerDisplay.style.background = "#000000";
   timerDisplay.style.color = "#fff";
   timerDisplay.style.cursor = "pointer";
-  startTimerButton.classList.remove('lighter');
-  pauseTimerButton.classList.remove('lighter');
-  startTimerButton.style.cursor = "pointer";
-  pauseTimerButton.style.cursor = "auto";
   document.getElementById('result').innerHTML = 0
   document.getElementById('result').style.visibility="hidden"
+  document.getElementById('result2').innerHTML = 0
+  document.getElementById('result2').style.visibility="hidden"
+  document.getElementById('feet').style.visibility="hidden";
+  document.getElementById('Meters').style.visibility="hidden";
+
 }
 
 function getShowTime(){
@@ -100,6 +74,7 @@ function getShowTime(){
   seconds = (seconds < 10) ? "0" + seconds : seconds;
   milliseconds = (milliseconds < 100) ? (milliseconds < 10) ? "0" + milliseconds : milliseconds : milliseconds;
   timerDisplay.innerHTML =  seconds + ':' + milliseconds;
-  document.getElementById('result').innerHTML = ((milliseconds * milliseconds)*16)/100;
+  document.getElementById('result').innerHTML = ((milliseconds * milliseconds)*16)/100 ;
+  document.getElementById('result2').innerHTML = Math.round((milliseconds * milliseconds)*4.9)/100 ;
 
 }

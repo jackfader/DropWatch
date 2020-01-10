@@ -15,8 +15,12 @@ a:hover {
 .btn-primary:focus {
   color: #ffff;
   text-shadow: none; /* Prevent inheritance from `body` */
-  background-color: #515550;
-  border: .05rem solid #515550;
+  background-color: #000000;
+  border: .05rem solid #000000;
+  height: auto;
+  width: 100px;
+  margin: auto;
+  cursor: pointer
 }
 
 
@@ -47,13 +51,14 @@ body {
     font-family: sans-serif;
     font-weight: 300;
     width:700px auto;
-    margin:20px auto;
+    margin:0 auto;
     min-height: 60px;
     border-top:0px;
   }
   .timer, .reset {
     float:left;
-    width: 54% ;
+    width: 100% ;
+    margin: 0 auto;
     padding: 20px 0;
     font-size: 24px auto;
     text-align:center;
@@ -64,7 +69,7 @@ body {
   .reset {
     background: #000000;
     color: white;
-    width:14.9%;
+    width:0;
     border-left: 1px solid #ffffff;
   }
   .reset:hover {
