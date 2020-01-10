@@ -20,8 +20,26 @@ function startTimer(){
     timerDisplay.style.color = "white";
     startTimerButton.classList.add('lighter');
     pauseTimerButton.classList.remove('lighter');
-    startTimerButton.style.cursor = "auto";
+    startTimerButton.style.cursor = "pointer";
     pauseTimerButton.style.cursor = "pointer";
+  }
+  else if (!difference){
+    // if timer never started, don't allow pause button to do anything
+  } else if (!paused) {
+    clearInterval(tInterval);
+    savedTime = difference;
+    paused = 1;
+    running = 0;
+    timerDisplay.style.background = "#000000";
+    timerDisplay.style.color = "#ffffff";
+    timerDisplay.style.cursor = "pointer";
+    startTimerButton.classList.remove('lighter');
+    pauseTimerButton.classList.add('lighter');
+    startTimerButton.style.cursor = "pointer";
+    pauseTimerButton.style.cursor = "pointer";
+    document.getElementById('result').style.visibility="visible";
+  } else {
+    startTimer();
   }
 }
 
@@ -40,7 +58,7 @@ function pauseTimer(){
     pauseTimerButton.classList.add('lighter');
     startTimerButton.style.cursor = "pointer";
     pauseTimerButton.style.cursor = "auto";
-
+    document.getElementById('result').style.visibility="visible";
   } else {
     startTimer();
   }
@@ -61,6 +79,7 @@ function resetTimer(){
   startTimerButton.style.cursor = "pointer";
   pauseTimerButton.style.cursor = "auto";
   document.getElementById('result').innerHTML = 0
+  document.getElementById('result').style.visibility="hidden"
 }
 
 function getShowTime(){
@@ -82,4 +101,5 @@ function getShowTime(){
   milliseconds = (milliseconds < 100) ? (milliseconds < 10) ? "0" + milliseconds : milliseconds : milliseconds;
   timerDisplay.innerHTML =  seconds + ':' + milliseconds;
   document.getElementById('result').innerHTML = ((milliseconds * milliseconds)*16)/100;
+
 }
