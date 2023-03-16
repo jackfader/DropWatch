@@ -16,4 +16,3 @@ D = (t^2)*4.9 -- for meter
 
 inspired by https://www.youtube.com/watch?v=z68vta3N5kg 
 
-timer from https://github.com/olinations/stopwatch
