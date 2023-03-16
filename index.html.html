@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drop Watch</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style>
+    body {display:flex; justify-content:center; align-items:center; min-height:100vh; background-color:#ede7f6;}
+    .container {max-width:500px; padding:1rem;}
+    .purple {background-color:#9c27b0;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Drop Watch</span>
+        <div id="timer" class="center-align">0.00s</div>
+        <div class="input-field"><select id="planet"><option value="" disabled selected>Select a planet</option><option value="9.81">Earth</option><option value="3.71">Mars</option><option value="24.79">Jupiter</option><option value="10.44">Saturn</option><option value="8.69">Uranus</option><option value="11.15">Neptune</option></select><label for="planet">Planet</label></div>
+        <div class="center-align"><button id="startStop" class="btn waves-effect waves-light purple">Start</button><button id="reset" class="btn waves-effect waves-light purple" disabled>Reset</button></div>
+        <div class="switch"><label>Meters<input type="checkbox" id="unitToggle"><span class="lever"></span>Feet</label></div>
+        <div class="input-field"><input type="number" id="height" readonly><label for="height">Height (meters)</label></div>
+        <div id="log"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => M.FormSelect.init(document.querySelectorAll('select')));
+
+    const timer = document.getElementById("timer"), startStop = document.getElementById("startStop"), reset = document.getElementById("reset"), planet = document.getElementById("planet"), height = document.getElementById("height"), unitToggle = document.getElementById("unitToggle"), log = document.getElementById("log");
+    let timeStart, interval, elapsedTime = 0, isRunning = false;
+
+    const calculateHeight = () => {
+      const time = parseFloat(timer.textContent), g = parseFloat(planet.value), h = 0.5 * g * Math.pow(time, 2) * (unitToggle.checked ? 3.28084 : 1);
+      height.value = h.toFixed(2);
+      document.querySelector("label[for='height']").innerText = `Height (${unitToggle.checked ? 'feet' : 'meters'})`;
+    };
+
+    const addToLog = () => {
+      const entry = document.createElement("p");
+      entry.textContent = `Planet: ${planet.options[planet.selectedIndex].text}, Time: ${timer.textContent}, Height: ${height.value} ${unitToggle.checked ? 'feet' : 'meters'}`;
+      log.prepend(entry);
+    };
+
+    const updateTime = () => {
+      elapsedTime = (Date.now() - timeStart) / 1000;
+      timer.textContent = elapsedTime.toFixed(2) + "s";
+    };
+
+    startStop.addEventListener("click", () => {
+      if (!isRunning && planet.value !== "") {
+        timeStart = Date.now() - elapsedTime * 1000;
+        interval = setInterval(updateTime, 10);
+        startStop.textContent = "Stop";
+        reset.disabled = true;
+      } else {
+        clearInterval(interval);
+        startStop.textContent = "Start";
+        reset.disabled = false;
+        calculateHeight();
+        addToLog();
+      }
+      isRunning = !isRunning;
+    });
+
+    reset.addEventListener("click", () => {
+      elapsedTime = 0;
+      timer.textContent = "0.00s";
+      height.value = "";
+    });
+  </script>
+</body>
+</html>
