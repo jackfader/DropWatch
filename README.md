@@ -1,6 +1,6 @@
 # DropWatch
 
-A simple web timer to determine the depth or distance an object falls based on time.
+A simple web timer to determine the depth or distance an object falls based on time. Supports most planets in our solar system.
 
 Drop* something small and start the timer, when you hear it hit the ground stop the timer and we will calculate the distance for you.
 
